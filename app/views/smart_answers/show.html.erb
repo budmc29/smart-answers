@@ -1,11 +1,4 @@
-<% content_for :title do %><%= @presenter.title %><% end %>
-<% content_for :head do %>
-  <%= javascript_include_tag "application", defer: true %>
-<% end %>
-
-<% if @navigation_helpers %>
-  <%= render partial: 'govuk_component/breadcrumbs', locals: @navigation_helpers.breadcrumbs %>
-<% end %>
+<%= render 'page_head' %>
 
 <div class="grid-row">
   <main id="content" role="main">
@@ -13,15 +6,9 @@
       <%= render 'content' %>
     </div>
 
-    <div class="meta-wrapper">
-      <%= render 'smartanswer_metadata' %>
-    </div>
+    <%= render 'smartanswer_metadata' %>
   </main>
   <% unless @presenter.started? %>
-    <div class="related-container">
-      <% if @navigation_helpers %>
-        <%= render partial: 'govuk_component/related_items', locals: @navigation_helpers.related_items %>
-      <% end %>
-    </div>
+    <%= render 'related_items' %>
   <% end %>
 </div>
